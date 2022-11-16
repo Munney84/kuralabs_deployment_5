@@ -27,3 +27,42 @@ pipeline {
                     }
                 }
             }
+
+            stage ('Create_Image'){
+                agent{label 'docker_agent'}
+                steps {
+                withCredentials([string(credentialsId: 'DOCKERHUB_UNAME', variable: 'dockerhub_uname'),
+                                    string(credentialsId: 'DOCKERHUB_PASSWD', variable: 'dockerhub_passwd')]) {
+                    sh ''' #!/bin/bash
+                    apt update
+                    
+                    '''
+                    
+                    }
+                }
+            }
+            stage ('Push_to_Docker'){
+                agent{label 'docker_agent'}
+                steps {
+                withCredentials([string(credentialsId: 'DOCKERHUB_UNAME', variable: 'dockerhub_uname'),
+                                    string(credentialsId: 'DOCKERHUB_PASSWD', variable: 'dockerhub_passwd')]) {
+                    sh '''#!/bin/bash
+                    
+                    '''
+                    
+                    }
+                }
+            }
+
+            stage ('Deploy_to_ECS'){
+                agent{label 'docker_agent'}
+                steps {
+                withCredentials([string(credentialsId: 'DOCKERHUB_UNAME', variable: 'dockerhub_uname'),
+                                    string(credentialsId: 'DOCKERHUB_PASSWD', variable: 'dockerhub_passwd')]) {
+                    
+                    
+                    }
+                }
+            }
+        
+        
